@@ -1,20 +1,4 @@
-# Javascript-Practice-Exercises
-This is a repo of problems i solve while practicing Javascript. I solve problems mostly on codewars.
-***
-### P1 - Complete the solution so that it returns true if the first argument(string) passed in ends with the 2nd argument (also a string).
-#### [(Solve the problem on codewars)](https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d/train/javascript)
-
-Examples:
-````
-Inputs: "abc", "bc"
-Output: true
-
-Inputs: "abc", "d"
-Output: false
-````
-***
-Solution:
-````
+// Complete the solution so that it returns true if the first argument(string) passed in ends with the 2nd argument (also a string).
 
 // Take input from the user
 const prompt = require("prompt-sync")()
@@ -52,21 +36,3 @@ function solution(str, ending){
 }
 
 console.log(solution(firStrInput, subStrInput));
-````
-````
-Inputs: "abc", "bc"
-Output: true
-
-Inputs: "abc", "d"
-Output: false
-
-Inputs:
-"asdf" , "df"
-Output:
-true
-
-Inputs:
-"ef" , "abcdef"
-Output:
-true
-````
