@@ -100,4 +100,45 @@ function solution(number){
   return sum;
 }
 ```
-### P3-
+### P3- Write a function that takes in a string of one or more words, and returns the same string, but with all words that have five or more letters reversed (just like the name of this kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+
+Examples:
+```
+Input:
+Hey fellow warriors
+Output:
+Hey wollef sroirraw
+Input:
+This is a test 
+Output:
+This is a test 
+Input:
+This is another test
+Output:
+This is rehtona test"
+```
+**Solution:**
+```
+function spinWords(string){
+const newArr = string.split(" ");
+
+for(let i = 0; i < newArr.length; i++){
+    if(newArr[i].length >= 5){
+        let temp = newArr[i];
+        let revEle = temp.split("").reverse().join("");
+        newArr.splice(i, 1, revEle)
+    } 
+  }
+    const finalStr = newArr.join(" ");
+  return finalStr;
+}
+```
+
+**Best Solution:**
+```
+function spinWords(words){
+  return words.split(' ').map(function (word) {
+    return (word.length > 4) ? word.split('').reverse().join('') : word;
+  }).join(' ');
+}
+```
