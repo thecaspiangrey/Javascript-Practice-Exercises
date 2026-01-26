@@ -142,3 +142,69 @@ function spinWords(words){
   }).join(' ');
 }
 ```
+### P4- Usually when you buy something, you're asked whether your credit card number, phone number or answer to your most secret question is still correct. However, since someone could look over your shoulder, you don't want that shown on your screen. Instead, we mask it. 
+**Your task is to write a function `maskify`, which changes all but the last four characters into '#'.**
+
+**Examples (input --> output):**
+```
+Input:
+"4556364607935616"
+Output:
+"############5616"
+
+Input:
+"64607935616"
+Output:
+"#######5616"
+
+Input:
+"1"
+Output:
+"1"
+
+Input:
+""
+Ouput:
+""
+
+// "What was the name of your first pet?"
+
+Input:
+"Skippy"
+Output:
+"##ippy"
+
+Input:
+"Nananananananananananananananana Batman!"
+Output:
+"####################################man!"
+```
+**Solution:**
+```
+function maskify(str) {
+  let finalStr = "";
+  if (str.length > 4) {
+    for (let i = 0; i < str.length - 4; i++) {
+      finalStr = finalStr + "#";
+    }
+    finalStr = finalStr + str.substring(str.length - 4);
+    return finalStr;
+  } else {
+    return str;
+  }
+}
+```
+**Best solution(My opinion):**
+```
+function maskify(cc){ 
+  return cc.slice(-4).padStart(cc.length, '#')
+}
+```
+**Note:**
+
+_string.padStart(targetLength, padString)_
+* **targetLength** is the total number for the padding to be added on the start of the string.
+* **padString** is the string inside a quote('') which we want to add(pad) at the start of the string.
+
+
+### P5-
