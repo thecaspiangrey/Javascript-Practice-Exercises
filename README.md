@@ -70,6 +70,7 @@ Inputs:
 Output:
 true
 ````
+***
 ### P2- "Multiples of 3 or 5". If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in.Additionally, if the number is negative, return 0.
 #### Note: If a number is a multiple of both 3 and 5, only count it once.
 
@@ -100,6 +101,8 @@ function solution(number){
   return sum;
 }
 ```
+
+***
 ### P3- Write a function that takes in a string of one or more words, and returns the same string, but with all words that have five or more letters reversed (just like the name of this kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
 
 Examples:
@@ -142,6 +145,8 @@ function spinWords(words){
   }).join(' ');
 }
 ```
+
+***
 ### P4- Usually when you buy something, you're asked whether your credit card number, phone number or answer to your most secret question is still correct. However, since someone could look over your shoulder, you don't want that shown on your screen. Instead, we mask it. 
 **Your task is to write a function `maskify`, which changes all but the last four characters into '#'.**
 
@@ -206,5 +211,78 @@ _string.padStart(targetLength, padString)_
 * **targetLength** is the total number for the padding to be added on the start of the string.
 * **padString** is the string inside a quote('') which we want to add(pad) at the start of the string.
 
+***
+### P5-A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant). 
+**Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.**
 
-### P5-
+**Solution:**
+```
+function isPangram(string){
+ const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split("");
+ const loweredCaseString = string.toLowerCase();
+return  alphabet.every((letter)=>{
+    return loweredCaseString.includes(letter);
+})
+}
+```
+**Note-**
+
+**_array.every(callback(element, index, array), thisArg):_**  
+The every() method iterates over each array element, returning true if the provided function returns true for all elements. It returns false if the function returns false for any element. This method does not operate on empty elements and leaves the original array unchanged.
+
+**Parameters** <br>
+* **callback:** A function to test each element of the array. It takes three arguments:
+* **element:** The current element being processed in the array.
+* **index (optional):** The index of the current element being processed.
+* **array (optional):** The array every() was called upon.
+* **thisArg (optional):** An object to use this when executing the callback function.
+
+**_Array.prototype.includes():_** <br>
+The JavaScript includes() method is a built-in function used to determine if an array contains a specific element or if a string contains a specific substring. It performs a case-sensitive search and returns a boolean value (true or false). 
+* **Array.prototype.includes()** This method checks for the presence of a value within an array.
+  * **Syntax:** `array.includes(searchValue, fromIndex)`
+  * **Parameters:** 
+    * **searchValue (Required):** The value to search for.
+    * **fromIndex (Optional):** The index at which to start searching (defaults to 0). Negative indices count backward from the end of the array.
+    * **Return Value:** `true` if the `searchValue` is found, otherwise `false`.  
+    
+<br>
+**Ex:**
+
+```
+const fruits = ["apple", "banana", "mango"];
+
+// Check if "banana" is in the array
+console.log(fruits.includes("banana")); // Output: true
+
+// Check if "grape" is in the array
+console.log(fruits.includes("grape")); // Output: false
+
+// Check if "apple" is in the array, starting search from index 1
+console.log(fruits.includes("apple", 1)); // Output: false (apple is at index 0)
+```
+**_String.prototype.includes()_** <br>
+This method checks if one string can be found inside another string. <br>
+* **Syntax:** `string.includes(searchString, position)`
+* **Parameters:** 
+  * **searchString (Required):** The string to be searched for.
+  * **position (Optional):** The position within the string to begin the search (defaults to 0).
+  * **Return Value:** `true` if the `searchString` is found, otherwise `false`. 
+<br>
+
+**Ex:**
+```
+const sentence = "The quick brown fox jumps over the lazy dog.";
+
+// Check if the substring "fox" is in the sentence
+console.log(sentence.includes("fox")); // Output: true
+
+// Check for a case-mismatched string
+console.log(sentence.includes("Fox")); // Output: false (case-sensitive)
+
+// Check for "jumps" starting from index 20
+console.log(sentence.includes("jumps", 20)); // Output: false ("jumps" is at index 16)
+```
+
+***
+### P6-
