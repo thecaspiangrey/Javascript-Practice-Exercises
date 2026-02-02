@@ -285,4 +285,56 @@ console.log(sentence.includes("jumps", 20)); // Output: false ("jumps" is at ind
 ```
 
 ***
-### P6-
+### P6-There was a test in your class and you passed it. Congratulations! But you're an ambitious person. You want to know if you're better than the average student in your class. You receive an array with your peers' test scores. Now calculate the average and compare your score! Return true if you're better, else false!
+
+Note:
+Your points are not included in the array of your class's points. Do not forget them when calculating the average score!
+
+#### [(Solve the question on codewars)](https://www.codewars.com/kata/5601409514fc93442500010b/train/javascript)
+
+**Soluiton:**
+```
+function betterThanAverage(classPoints, yourPoints) {
+    const sumOfScores = classPoints.reduce((acc, curr) => {
+        return acc + curr;
+    })
+    const averageScore = sumOfScores/classPoints.length;
+    console.log(averageScore)
+    if(averageScore < yourPoints){
+        return true;
+    } else {
+        return false;
+    }
+}
+```
+Better solution by me:
+```
+function betterThanAverage(classPoints, yourPoints){
+    return  yourPoints > classPoints.reduce((acc,curr) => acc + curr)/classPoints.length? true : false
+}
+```
+**Note:**
+_The `reduce()` method in JavaScript is an array method that executes a user-supplied "reducer" callback function on each element of an array, resulting in a single output value. The final value can be a number, a string, an object, or a new array._
+Syntax:
+```
+array.reduce(callbackFn, [initialValue])
+```
+* `callbackFn` (Reducer function):A function executed on each element in the array. This function takes up to four arguments:
+  * `accumulator`: The value resulting from the previous call to the callback function. On the first call, if an `initialValue` is provided, this is its value; otherwise, it is the first element of the array.
+  * `currentValue`: The current element being processed in the array.
+
+<br>
+
+**Example:**
+```
+const numbers = [1, 2, 3, 4, 5];
+
+const sum = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0); // 0 is the initialValue for the accumulator
+
+console.log(sum); // Output: 15
+```
+***
+
+### P7-
