@@ -247,6 +247,7 @@ The JavaScript includes() method is a built-in function used to determine if an 
     * **Return Value:** `true` if the `searchValue` is found, otherwise `false`.  
     
 <br>
+
 **Ex:**
 
 ```
@@ -290,7 +291,7 @@ console.log(sentence.includes("jumps", 20)); // Output: false ("jumps" is at ind
 Note:
 Your points are not included in the array of your class's points. Do not forget them when calculating the average score!
 
-#### [(Solve the question on codewars)](https://www.codewars.com/kata/5601409514fc93442500010b/train/javascript)
+#### [(Solve the problem on codewars)](https://www.codewars.com/kata/5601409514fc93442500010b/train/javascript)
 
 **Soluiton:**
 ```
@@ -337,4 +338,33 @@ console.log(sum); // Output: 15
 ```
 ***
 
-### P7-
+### P7- Extract the domain name from a URL. Write a function that when given a URL as a string, parses out just the domain name and returns it as a string. 
+For example: 
+```
+* url = "http://github.com/carbonfive/raygun" -> domain name = "github"
+* url = "http://www.zombie-bites.com"         -> domain name = "zombie-bites"
+* url = "https://www.cnet.com"                -> domain name = cnet"
+```
+#### [(Solve the problem on codewars)](https://www.codewars.com/kata/514a024011ea4fb54200004b/javascript)
+
+**Solution:**
+```
+function domainName(url) {
+  if (url.includes("//www")) {
+    return url.split(".")[1];
+  } else if (url.includes("www") && url.indexOf("www") === 0) {
+    return url.split(".")[1];
+  } else {
+    if (url.includes("//")) {
+      let inddexNumber = url.indexOf("//") + "//".length;
+      return url.slice(inddexNumber).split(".")[0];
+    } else {
+      return url.split(".")[0];
+    }
+  }
+}
+
+```
+Note: This solution taked care if the domain it-self consists "www", it does not remove that from the domain name, and extract the actual domain name from the url.
+
+### P8-
