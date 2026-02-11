@@ -366,7 +366,7 @@ function domainName(url) {
 
 ```
 Note: This solution taked care if the domain it-self consists "www", it does not remove that from the domain name, and extract the actual domain name from the url.
-
+---
 ### P8-Make the Deadfish Swim Description:
 Create a parser to interpret and execute the Deadfish language.
 Deadfish operates on a single value in memory, which is initially set to 0.
@@ -402,6 +402,7 @@ function parse(data) {
   return outputArr; // your code here
 }
 ```
+---
 ### P9-Is a number prime? Description: Define a function that takes an integer argument and returns a logical value `true` or `false` depending on if the integer is a prime.
 
 Per Wikipedia, a prime number ( or a prime ) is a natural number greater than `1` that has no positive divisors other than `1` and itself.<br>
@@ -461,3 +462,69 @@ function isPrime(num) {
   return true;
 }
 ```
+---
+### P10-Playing with digits. Description:Some numbers have funny properties. For example: 
+**89 --> 8¹ + 9² = 89 * 1 <br>
+695 --> 6² + 9³ + 5⁴= 1390 = 695 * 2 <br>
+46288 --> 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51 <br>
+Given two positive integers n and p, we want to find a positive integer k, if it exists, such that the sum of the digits of n raised to consecutive powers starting from p is equal to k * n. <br>
+If it is the case we will return k(the number which we receive when we devide the sum by the n), if not return -1.**
+
+**Note: n and p will always be strictly positive integers.**
+
+**Examples:**
+```
+n = 89; p = 1 ---> 1 since 8¹ + 9² = 89 = 89 * 1
+n = 92; p = 1 ---> -1 since there is no k such that 9¹ + 2² equals 92 * k
+n = 695; p = 2 ---> 2 since 6² + 9³ + 5⁴= 1390 = 695 * 2
+n = 46288; p = 3 ---> 51 since 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
+```
+#### [(Solve the problem on codewars)](https://www.codewars.com/kata/5552101f47fc5178b1000050/javascript)
+
+**Solution:**
+```
+function digPow(n, p) {
+  const digitArray = n.toString().split("");
+  let calculatedSum = 0;
+  for (let i = 0; i < digitArray.length; i++) {
+    let temp = digitArray[i] ** p;
+    calculatedSum += temp;
+    p++;
+    console.log(calculatedSum);
+  }
+  if (calculatedSum % n === 0) {
+    return calculatedSum / n;
+  } else {
+    return -1;
+  }
+}
+```
+**Best solution by me:**
+```
+function digPow(n, p){
+    let sum = [...n.toString()].reduce((acc, curr, i)=>acc = acc + curr ** (p+i), 0);
+    return sum%n === 0 ? sum/n : -1 ;
+}
+```
+**Note:** <br>
+The `Math.pow()` is a static method that returns the value of a `base` number raised to the `power` of a specified exponent. <br>
+**Syntax:** <br>
+**Math.pow(base, exponent)** <br>
+Parameters: <br>
+**base:** The base number. <br>
+**exponent:** The power to which to raise the base number.
+```
+let result = Math.pow(5, 3); // 5 raised to the power of 3 (5*5*5)
+console.log(result); // Output: 125
+```
+The `exponentiation operator (**)` was introduced in *ECMAScript 2016 (ES7)* and offers a more *concise* syntax for the same operation. <br> 
+**Syntax:**
+ base ** exponent
+```
+let result = 5 ** 3; // 5 raised to the power of 3
+console.log(result); // Output: 125
+```
+The `**` operator is generally preferred in modern JavaScript development due to its *cleaner* syntax and support for `BigInt`.
+
+---
+### P11-
