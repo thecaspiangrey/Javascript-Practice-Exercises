@@ -569,7 +569,7 @@ function cakes(recipe, available) {
   );
 }
 ```
-### P12- Task
+### P12- Maximum product
 **Given an array of integers , Find the maximum product obtained from multiplying 2 adjacent numbers in the array. Note that the array size is at least 2 and consists a mixture of positive, negative integers and also zeroes.**
 
 Examples:
@@ -582,3 +582,20 @@ Examples:
 −2∗7=−14
 ```
 ### [(Solve the problem on codewars)](https://www.codewars.com/kata/5a4138acf28b82aa43000117/train/javascript)
+
+**Solution:**
+```
+function adjacentElementsProduct(array) {
+  
+  let maxProduct = -Infinity;
+  for(let i = 0; i < array.length-1;i++){
+      let temp = array[i] * array[i+1]
+      if(temp > maxProduct){
+          maxProduct = temp;
+      }
+  }
+  return maxProduct;
+}
+```
+
+### P13-
