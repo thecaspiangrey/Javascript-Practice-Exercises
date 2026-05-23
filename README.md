@@ -644,4 +644,31 @@ function addedChar(s1, s2) {
   }
 }
 ```
-### P14-
+### P14- Leap Years
+**In this kata you should simply determine, whether a given year is a leap year or not. In case you don't know the rules, here they are:**
+
+**Years divisible by 4 are leap years,
+but years divisible by 100 are not leap years,
+but years divisible by 400 are leap years.
+Tested years are in range 1600 ≤ year ≤ 4000.**
+
+### [(Solve the question on codewars)](http://codewars.com/kata/526c7363236867513f0005ca)
+**Solution:**
+```
+function isLeapYear(year) {
+  if(year%4===0){
+    if(year%100===0){
+        if(year%400===0){
+            return true
+        } else{ return false}
+    } else {return true}
+  } 
+  return false
+}
+```
+**Optimized solution:**
+```
+function isLeapYear(year){
+    return year%4===0 ? (year%100===0 ? (year%400===0 ? true : false) : true) : false
+}
+```
