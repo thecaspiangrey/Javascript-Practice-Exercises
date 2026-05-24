@@ -672,3 +672,53 @@ function isLeapYear(year){
     return year%4===0 ? (year%100===0 ? (year%400===0 ? true : false) : true) : false
 }
 ```
+### P15- String subpattern recognition II
+**you will need to return a boolean value if the base string can be expressed as the repetition of one subpattern.**
+
+**This time there are two small changes:**
+
+**if a subpattern has been used, it will be present at least twice, meaning the subpattern has to be shorter than the original string;**
+**the strings you will be given might or might not be created repeating a given subpattern, then shuffling the result.** <br>
+
+**For example:**
+```
+"a"    --> false //no repeated shorter sub-pattern, just one character
+"aaaa" --> true  //just one character repeated
+"abcd" --> false //no repetitions
+"babababababababa" --> true //repeated "ba"
+"bbabbaaabbaaaabb" --> true //same as above, just shuffled
+```
+**Strings will never be empty and can be composed of any character (just consider upper- and lowercase letters as different entities) and can be pretty long (keep an eye on performances!).**
+### [(Solve this problem on codewars)](https://www.codewars.com/kata/5a4a391ad8e145cdee0000c4/train/javascript)
+ 
+**Solution:**
+```
+function hasSubpattern(string){
+    const uniqueChar = new Set(string);
+    const charFrequency = [...uniqueChar].map((uniqueChar)=>{
+        let count = 0;
+        [...string].forEach((char)=>{
+            if(char === uniqueChar){count++}
+        })
+        return count
+    })
+
+    const gcd = ((a, b)=>{
+        // using Euclidean algorithm: gcd(a,b) = gcd(b, a%b)
+        while(b !== 0){
+            temp = b
+            b = a%b
+            a = temp
+        }
+        return a;
+    })
+
+    let result = charFrequency[0]
+    for(let i = 1; i < charFrequency.length; i++){
+       result = gcd(result, charFrequency[i])
+    }
+
+    return result
+
+}
+```
