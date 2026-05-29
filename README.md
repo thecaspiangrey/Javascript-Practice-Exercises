@@ -672,7 +672,45 @@ function isLeapYear(year){
     return year%4===0 ? (year%100===0 ? (year%400===0 ? true : false) : true) : false
 }
 ```
-### P15- String subpattern recognition II
+### P15- String subpattern recognition I
+**In this kata you need to build a function to return either true/True or false/False if a string can be seen as the repetition of a simpler/shorter subpattern or not.**
+
+
+**For example:**
+```
+hasSubpattern("a") === false; //no repeated pattern
+hasSubpattern("aaaa") === true; //created repeating "a"
+hasSubpattern("abcd") === false; //no repeated pattern
+hasSubpattern("abababab") === true; //created repeating "ab"
+hasSubpattern("ababababa") === false; //cannot be entirely reproduced repeating a pattern
+```
+**Strings will never be empty and can be composed of any character (just consider upper- and lowercase letters as different entities) and can be pretty long (keep an eye on performances!).**
+### [(Solve this problem on codewars)](https://www.codewars.com/kata/5a49f074b3bfa89b4c00002b/train/javascript)
+ 
+**Solution:**
+```
+function hasSubpattern(string){
+    if(string.length === 1){return false};
+    for( let i = 1; i <= string.length/2; i++){
+        const subPattern = string.slice(0, i);
+        if(subPattern.repeat(string.length/i) === string){
+            return true
+        }
+    }
+    return false;
+}
+
+```
+**Faster approach using KMP based algorithm:**
+```
+function hasSubpattern(string){
+    const doubled = string + string;
+    const trimmed = doubled.slice(1, doubled.length - 1);
+    return trimmed.includes(string);
+}
+```
+
+### P16- String subpattern recognition II
 **you will need to return a boolean value if the base string can be expressed as the repetition of one subpattern.**
 
 **This time there are two small changes:**
@@ -722,3 +760,4 @@ function hasSubpattern(string){
 
 }
 ```
+### P17-

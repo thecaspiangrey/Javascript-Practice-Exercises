@@ -1,58 +1,34 @@
 /*
-String subpattern recognition II
-Similarly to the previous kata, you will need to return a boolean value if the base string can be expressed as the repetition of one subpattern.
+String subpattern recognition I
+In this kata you need to build a function to return either true/True or false/False if a string can be seen as the repetition of a simpler/shorter subpattern or not.
 
-This time there are two small changes:
-
-if a subpattern has been used, it will be present at least twice, meaning the subpattern has to be shorter than the original string;
-the strings you will be given might or might not be created repeating a given subpattern, then shuffling the result.
 For example:
 
-"a"    --> false //no repeated shorter sub-pattern, just one character
-"aaaa" --> true  //just one character repeated
-"abcd" --> false //no repetitions
-"babababababababa" --> true //repeated "ba"
-"bbabbaaabbaaaabb" --> true //same as above, just shuffled
+hasSubpattern("a") === false; //no repeated pattern
+hasSubpattern("aaaa") === true; //created repeating "a"
+hasSubpattern("abcd") === false; //no repeated pattern
+hasSubpattern("abababab") === true; //created repeating "ab"
+hasSubpattern("ababababa") === false; //cannot be entirely reproduced repeating a pattern
 Strings will never be empty and can be composed of any character (just consider upper- and lowercase letters as different entities) and can be pretty long (keep an eye on performances!).
 */
-
-// Solution: To solve this, first we need to find the frequency of each character in the string(as there is no condition for the string characters to be in the order), then we will find the GCD of the frequency of each character. The GCD value will be the total number of the subpattern repetation.
+// Solution:To solve this problem, we need to find out the frequency of each unique letter and then check if all the unique letter has the same frequency. If they all the unique letters have equal frequency then the string can be said to be a repetition of shorter subpattern.  If they don't have the equal frequency then the string cannot be said to be the repetition of shorter subpattern.
 function hasSubpattern(string){
-    // to find the frequency of each char in the string, first we need to find all the unique char in the string. We can create a new set from the string, then convert it into array using spread operator, then iterate through each element to count the freaquency in the original string. store all the numbers in an array.
-    const uniqueChar = new Set(string);
-    const charFrequency = [...uniqueChar].map((uniqueChar)=>{
-        let count = 0;
-        [...string].forEach((char)=>{
-            if(char === uniqueChar){count++}
-        })
-        return count
-    })
-    console.log(uniqueChar, charFrequency);
-
-
-
-//  then find the gcd and return the result. The result of the GCD will be the total number of possible subpattern in the original string.
-    const gcd = ((a, b)=>{
-        // using Euclidean algorithm: gcd(a,b) = gcd(b, a%b)
-        while(b !== 0){
-            temp = b
-            b = a%b
-            a = temp
+    if(string.length === 1){return false};
+    for( let i = 1; i <= string.length/2; i++){
+        const subPattern = string.slice(0, i);
+        if(subPattern.repeat(string.length/i) === string){
+            return true
         }
-        return a;
-    })
-
-    let result = charFrequency[0]
-    for(let i = 1; i < charFrequency.length; i++){
-       result = gcd(result, charFrequency[i])
     }
-
-    if(result > 1){
-        return true
-    } else {
-        return false
-    }
-
+    return false;
 }
 
-console.log(hasSubpattern("abcd"))
+
+
+// function hasSubpattern(string){
+//     const doubled = string + string;
+//     const trimmed = doubled.slice(1, doubled.length - 1);
+//     return trimmed.includes(string);
+// }
+
+console.log(hasSubpattern("ababababa"))
