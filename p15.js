@@ -11,7 +11,7 @@ hasSubpattern("abababab") === true; //created repeating "ab"
 hasSubpattern("ababababa") === false; //cannot be entirely reproduced repeating a pattern
 Strings will never be empty and can be composed of any character (just consider upper- and lowercase letters as different entities) and can be pretty long (keep an eye on performances!).
 */
-// Solution:To solve this problem, we need to find out the frequency of each unique letter and then check if all the unique letter has the same frequency. If they all the unique letters have equal frequency then the string can be said to be a repetition of shorter subpattern.  If they don't have the equal frequency then the string cannot be said to be the repetition of shorter subpattern.
+// Solution:To solve this problem, we need to find out that which subpattern creates the full string by repeating.
 function hasSubpattern(string){
     if(string.length === 1){return false};
     for( let i = 1; i <= string.length/2; i++){

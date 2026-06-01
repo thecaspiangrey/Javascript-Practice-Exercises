@@ -569,6 +569,7 @@ function cakes(recipe, available) {
   );
 }
 ```
+---
 ### P12- Maximum product
 **Given an array of integers , Find the maximum product obtained from multiplying 2 adjacent numbers in the array. Note that the array size is at least 2 and consists a mixture of positive, negative integers and also zeroes.**
 
@@ -597,7 +598,7 @@ function adjacentElementsProduct(array) {
   return maxProduct;
 }
 ```
-
+---
 ### P13-Three added Characters
 **Given two strings, the first being a random string and the second being the same as the first, but with three added characters somewhere in the string (three same characters), <br>
 Write a function that returns the added character <br>
@@ -644,6 +645,7 @@ function addedChar(s1, s2) {
   }
 }
 ```
+---
 ### P14- Leap Years
 **In this kata you should simply determine, whether a given year is a leap year or not. In case you don't know the rules, here they are:**
 
@@ -672,6 +674,7 @@ function isLeapYear(year){
     return year%4===0 ? (year%100===0 ? (year%400===0 ? true : false) : true) : false
 }
 ```
+---
 ### P15- String subpattern recognition I
 **In this kata you need to build a function to return either true/True or false/False if a string can be seen as the repetition of a simpler/shorter subpattern or not.**
 
@@ -709,6 +712,7 @@ function hasSubpattern(string){
     return trimmed.includes(string);
 }
 ```
+---
 
 ### P16- String subpattern recognition II
 **you will need to return a boolean value if the base string can be expressed as the repetition of one subpattern.**
@@ -760,4 +764,67 @@ function hasSubpattern(string){
 
 }
 ```
-### P17-
+---
+### P17- String subpattern recognition III
+**Similar to the previous kata, but this time you need to operate with shuffled strings to identify if they are composed repeating a subpattern
+
+Since there is no deterministic way to tell which pattern was really the original one among all the possible permutations of a fitting subpattern, return a subpattern with sorted characters, otherwise return the base string with sorted characters (you might consider this case as an edge case, with the subpattern being repeated only once and thus equalling the original input string).**
+
+**For example:**
+```
+"a" ==> "a"; // no repeated pattern, just one character
+"aaaa" ==> "a"; // just one character repeated
+"abcd" ==> "abcd"; // base pattern equals the string itself, no repetitions
+"babababababababa" ==> "ab"; // remember to return the base string sorted
+"bbabbaaabbaaaabb" ==> "ab"; // same as above, just shuffled
+```
+### [(Solve this problem on codewars)](https://www.codewars.com/kata/5a4a2973d8e14586c700000a/train/javascript)
+**Solution:**
+```
+function hasSubpattern(string) {
+  if (string.length === 1) {
+    return string;
+  }
+  //   first create an array of unique characters and an array of their frequencies
+  const uniqueChars = [...new Set(string)].sort();
+  const freq = uniqueChars.map((ele) => {
+    let count = 0;
+    [...string].forEach((char) => {
+      if (char === ele) {
+        count++;
+      }
+    });
+    return count;
+  });
+
+  // find the GCD, formula [(a%b=c),(b%c=d).....]
+  let a = freq[0];
+  for (let i = 1; i < freq.length; i++) {
+    let b = freq[i];
+    while (b !== 0) {
+      let temp = b;
+      let c = a % b;
+      a = temp;
+      b = c;
+    }
+  }
+  let gcd = a;
+  if (gcd < 2) {
+    return [...string].sort().join("");
+  } else if (gcd >= 2) {
+    const charFreqInSubPattern = freq.map((ele) => ele / gcd);
+    return charFreqInSubPattern
+      .map((ele, index) => {
+        let tempStr = [];
+        for (let i = 0; i < ele; i++) {
+          tempStr.push(uniqueChars[index]);
+        }
+        return tempStr;
+      })
+      .flat(Infinity)
+      .join("");
+  }
+}
+```
+**Optimized solution:**
+```
