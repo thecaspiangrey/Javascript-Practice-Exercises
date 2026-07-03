@@ -766,9 +766,9 @@ function hasSubpattern(string){
 ```
 ---
 ### P17- String subpattern recognition III
-**Similar to the previous kata, but this time you need to operate with shuffled strings to identify if they are composed repeating a subpattern
+**Similar to the previous kata, but this time you need to operate with shuffled strings to identify if they are composed repeating a subpattern**
 
-Since there is no deterministic way to tell which pattern was really the original one among all the possible permutations of a fitting subpattern, return a subpattern with sorted characters, otherwise return the base string with sorted characters (you might consider this case as an edge case, with the subpattern being repeated only once and thus equalling the original input string).**
+**Since there is no deterministic way to tell which pattern was really the original one among all the possible permutations of a fitting subpattern, return a subpattern with sorted characters, otherwise return the base string with sorted characters (you might consider this case as an edge case, with the subpattern being repeated only once and thus equalling the original input string).**
 
 **For example:**
 ```
@@ -826,5 +826,27 @@ function hasSubpattern(string) {
   }
 }
 ```
-**Optimized solution:**
+
+---
+### P18- Coding 3min : A*B=C
+**Find out a pair of numbers(we called them number a and number b) from the array numbers, let a*b=c, result format is an array [a,b]**
+
+**The array numbers is a sorted array, value range: -100...100
+The result will be the first pair of numbers, for example,findAB([1,2,3,4,5,6],6) should return [1,6], instead of [2,3]
+If there is no such pair, return null / None / nil (etc., depending on your language).**
+### [(Solve this problem on codewars)](https://www.codewars.com/kata/5714803d2817ffce17000a35/train/javascript)
+**Solution:**
 ```
+function findAB(numbers,c){
+  for(let i = 0; i < numbers.length;i++){
+    for(let j = i + 1; j < numbers.length; j++){
+      if(numbers[i] * numbers[j] === c){
+        return [numbers[i] , numbers[j]]
+      }
+    }
+  }
+   return null;
+}
+```
+
+### P19-
